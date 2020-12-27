@@ -7,7 +7,7 @@ package ejercicio2;
 
 /**
  *
- * @author hrmha
+ * @author HectorRobles
  */
 public class Buscador {
     boolean haySubString(String subTexto, String texto){

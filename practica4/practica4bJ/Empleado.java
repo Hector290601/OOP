@@ -2,7 +2,7 @@
 /**
  * Write a description of class empleado here.
  * 
- * @author (your name) 
+ * @author HectorRobles 
  * @version (a version number or a date)
  */
 public class Empleado

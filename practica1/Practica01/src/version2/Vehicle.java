@@ -7,7 +7,7 @@ package version2;
 
 /**
  *
- * @author hrmha
+ * @author HectorRobles
  */
 public class Vehicle {
     public double load;

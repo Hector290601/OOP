@@ -7,7 +7,7 @@ package banking;
 
 /**
  *
- * @author hrmha
+ * @author HectorRobles
  */
 public class Account {
     private double balance;

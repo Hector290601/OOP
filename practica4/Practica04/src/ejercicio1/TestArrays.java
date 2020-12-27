@@ -7,7 +7,7 @@ package ejercicio1;
 
 /**
  *
- * @author hrmha
+ * @author HectorRobles
  */
 public class TestArrays {
     public static void main(String[] args){

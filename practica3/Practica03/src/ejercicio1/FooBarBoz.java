@@ -7,7 +7,7 @@ package ejercicio1;
 
 /**
  *
- * @author hrmha
+ * @author HectorRobles
  */
 public class FooBarBoz {
     void FooBarBoz(){

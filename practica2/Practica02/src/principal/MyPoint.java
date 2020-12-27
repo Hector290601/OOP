@@ -7,7 +7,7 @@ package principal;
 
 /**
  *
- * @author hrmha
+ * @author HectorRobles
  */
 public class MyPoint {
     public int x;

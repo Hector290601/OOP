@@ -7,7 +7,7 @@ package banking;
 
 /**
  *
- * @author hrmha
+ * @author HectorRobles
  */
 public class Customer {
     private String fristName;
