@@ -10,10 +10,10 @@ package banking;
  * @author HectorRobles
  */
 public class Bank {
-    Customer customers[];
-    int numOfCustomers = 0;
+    private Customer[] customers;
+    private int numOfCustomers = 0;
     public Bank(){
-        customers = new Customer[5];
+        customers = new Customer[10];
     }
     public void addCustomer(String firstName, String lastName){
         Customer newCustomer = new Customer(firstName, lastName);

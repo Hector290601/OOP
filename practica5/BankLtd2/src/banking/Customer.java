@@ -12,10 +12,12 @@ package banking;
 public class Customer {
     private String fristName;
     private String lastName;
-    private Account account;
+    private Account[] accounts;
+    protected int numberOfAccounts = 0;
     public Customer(String name, String surname){
-        fristName = name;
-        lastName = surname;
+        this.fristName = name;
+        this.lastName = surname;
+        accounts = new Account[5];
     }
     public String getFirstName(){
         return fristName;
@@ -23,10 +25,14 @@ public class Customer {
     public String getLastName(){
         return lastName;
     }
-    public Account getAccount(){
-        return account;
+    public Account getAccount(int n){
+        return accounts[n];
     }
-    public void setAccount(Account account) {
-        this.account = account;
+    public void addAccount(Account account) {
+        accounts[numberOfAccounts] = account;
+        numberOfAccounts += 1;
+    }
+    public int getNumOfAccounts(){
+        return numberOfAccounts;
     }
 }
