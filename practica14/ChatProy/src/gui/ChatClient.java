@@ -9,19 +9,28 @@ import java.awt.*;
 import java.awt.event.*;
 import java.io.*;
 import java.net.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.*;
 
 /**
  *
  * @author hector
  */
-public class ChatClient {
+class ChatClient {
     private JTextArea outputMessages;
     private JTextField inputMessage;
     private JButton send;
     private JButton quit;
     private JComboBox<String> people;
     private JMenuBar menu;
+    protected Socket s1;
+    protected InputStream is;
+    protected InputStreamReader isR;
+    protected OutputStream os;
+    protected BufferedReader bfr;
+    protected PrintStream ps;
+    protected Thread th;
     public ChatClient(){
         outputMessages = new JTextArea(10, 50);
         inputMessage = new JTextField(50);
@@ -30,17 +39,16 @@ public class ChatClient {
         menu = new JMenuBar();
     }
     public void launchFrame(){
-        Socket s1;
-        InputStream is;
-        InputStreamReader isR;
-        OutputStream os;
-        BufferedReader bfr;
-        PrintStream ps;
         try{
-            s1 = new Socket("192.168.1.75", 2000);
+            s1 = new Socket("189.130.219.5", 2000);
             is = s1.getInputStream();
             os = s1.getOutputStream();
-            isR = InputStreamReader(is);
+            isR = new InputStreamReader(is);
+            bfr = new BufferedReader(isR);
+            os = new PrintStream(os);
+            Runnable rs = new thrd(bfr);
+            th = new Thread(rs);
+            th.start();
         }catch (ConnectException e) {
             System.err.println("Could not connect to the server.");
             e.printStackTrace();
@@ -113,5 +121,26 @@ public class ChatClient {
     public static void main(String [] args){
         ChatClient chat = new ChatClient();
         chat.launchFrame();
+    }
+    class thrd implements Runnable{
+        BufferedReader bfrThrd;
+        public thrd (BufferedReader bfr){
+            bfrThrd = bfr;
+        }
+        @Override 
+        public void run() {
+            String aviable = "", putted = outputMessages.getText();
+            while(true){
+                try {
+                    aviable = bfrThrd.readLine();
+                } catch (IOException ex) {
+                    Logger.getLogger(ChatClient.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                if(!aviable.isBlank()){
+                    putted += "\n"+aviable;
+                }
+                outputMessages.setText(putted);
+            }
+        }
     }
 }
