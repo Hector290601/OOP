@@ -45,7 +45,7 @@ class ChatClient {
             os = s1.getOutputStream();
             isR = new InputStreamReader(is);
             bfr = new BufferedReader(isR);
-            os = new PrintStream(os);
+            ps = new PrintStream(os);
             Runnable rs = new thrd(bfr);
             th = new Thread(rs);
             th.start();
@@ -102,8 +102,7 @@ class ChatClient {
                     String history = outputMessages.getText();
                     String to;
                     to = (String) people.getSelectedItem();
-                    history += "Me -> " + to + ":\n" + stringToSend + "\n";
-                    outputMessages.setText(history);
+                    ps.println("Me -> " + to + ":\n" + stringToSend + "\n");
                 }
             }
         });
@@ -125,7 +124,7 @@ class ChatClient {
     class thrd implements Runnable{
         BufferedReader bfrThrd;
         public thrd (BufferedReader bfr){
-            bfrThrd = bfr;
+            this.bfrThrd = bfr;
         }
         @Override 
         public void run() {
